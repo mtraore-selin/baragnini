@@ -86,9 +86,9 @@ votre-repo/
 
 ## Captures d'Écran
 
-| Accueil                                  | Services                                  | Ajouter un Service                                  | Profil                                  |
-| ---------------------------------------- | ----------------------------------------- | --------------------------------------------------- | --------------------------------------- |
-| ![Accueil](https://i.imgur.com/xyz1.png) | ![Services](https://i.imgur.com/xyz2.png) | ![Ajouter un Service](https://i.imgur.com/xyz3.png) | ![Profil](https://i.imgur.com/xyz4.png) |
+| Accueil                                    | Services                                        | Ajouter un Service                                           | Profil                                       |
+| ------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------- |
+| ![Accueil](./assets/screen-shots/home.png) | ![Services](./assets/screen-shots/services.png) | ![Ajouter un Service](./assets/screen-shots/add-service.png) | ![Profil](./assets/screen-shots/profile.png) |
 
 ## Contribuer
 

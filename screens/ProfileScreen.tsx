@@ -15,8 +15,8 @@ export default function ProfileScreen() {
 
   // Données du profil (à remplacer par des données dynamiques)
   const user = {
-    name: "N'Golo Dansouba",
-    email: "golo.dansouba@example.com",
+    name: "Mohamed TRAORE",
+    email: "mtra0102@gmail.com",
     bio: "Développeur passionné par les technologies mobiles et les applications innovantes.",
     avatarUrl: "https://via.placeholder.com/150", // URL de l'avatar
   };

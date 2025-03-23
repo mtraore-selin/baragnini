@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
@@ -12,6 +13,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default function ProfileScreen() {
   const theme = useTheme();
+  const navigation = useNavigation();
 
   // Données du profil (à remplacer par des données dynamiques)
   const user = {
@@ -19,6 +21,11 @@ export default function ProfileScreen() {
     email: "mtra0102@gmail.com",
     bio: "Développeur passionné par les technologies mobiles et les applications innovantes.",
     avatarUrl: "https://via.placeholder.com/150", // URL de l'avatar
+  };
+
+  const handleLogout = () => {
+    console.log("Déconnexion réussie");
+    navigation.navigate("Login"); // Rediriger vers l'écran de connexion
   };
 
   return (
@@ -56,7 +63,7 @@ export default function ProfileScreen() {
           </Button>
           <Button
             mode="outlined"
-            onPress={() => console.log("Se déconnecter")}
+            onPress={handleLogout}
             style={styles.button}
             icon={() => (
               <Icon name="logout" size={20} color={theme.colors.error} />

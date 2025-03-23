@@ -7,6 +7,8 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ServicesScreen from "./screens/ServicesScreen";
 import { RootStackParamList } from "./types/navigationTypes";
 import HomeScreen from "./screens/ HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import { getTabIcon } from "./utils/tabIcons";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -20,22 +22,7 @@ export default function AppNavigation() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === "Accueil") {
-              iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Services") {
-              iconName = focused
-                ? "format-list-bulleted"
-                : "format-list-bulleted-type";
-            } else if (route.name === "Ajouter un service") {
-              iconName = focused ? "plus-circle" : "plus-circle-outline";
-            } else if (route.name === "Profil") {
-              iconName = focused ? "account" : "account-outline";
-            } else {
-              iconName = "unknown"; // Icône par défaut
-            }
-
+            const iconName = getTabIcon(route, focused);
             // Utilisez la couleur passée par screenOptions
             return <Icon name={iconName} size={size} color={color} />;
           },
@@ -43,6 +30,7 @@ export default function AppNavigation() {
           tabBarInactiveTintColor: inactiveColor, // Couleur inactive pour les icônes et le texte
         })}
       >
+        <Tab.Screen name="Login" component={LoginScreen} />
         <Tab.Screen name="Accueil" component={HomeScreen} />
         <Tab.Screen name="Services" component={ServicesScreen} />
         <Tab.Screen name="Ajouter un service" component={AddServiceScreen} />

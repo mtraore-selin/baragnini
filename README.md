@@ -79,6 +79,7 @@ votre-repo/
 ├── navigation/           # Configuration de la navigation
 ├── screens/              # Écrans de l'application
 ├── types/                # Définitions TypeScript
+├── utils/                # Utils réutilisables
 ├── App.tsx               # Point d'entrée de l'application
 ├── README.md             # Fichier README
 └── package.json          # Dépendances et scripts
@@ -99,6 +100,32 @@ Les contributions sont les bienvenues ! Si vous souhaitez contribuer au projet, 
 3. Committez vos changements (`git commit -m 'Ajouter une nouvelle fonctionnalité'`).
 4. Pushez la branche (`git push origin feature/nouvelle-fonctionnalité`).
 5. Ouvrez une Pull Request.
+
+## MVE:
+
+Quelques idées supplémentaires pour aller plus loin :
+
+### Authentification :
+
+Ajoutez un système de connexion/d'inscription pour les utilisateurs.
+
+Utilisez Firebase Authentication ou une autre solution pour gérer les utilisateurs.
+
+### Base de données :
+
+Intégrez une base de données (comme Firebase Firestore ou MongoDB) pour stocker les services et les profils des utilisateurs.
+
+### Recherche de services :
+
+Ajoutez une fonctionnalité de recherche pour permettre aux utilisateurs de trouver des services par catégorie, localisation, etc.
+
+### Notifications :
+
+Utilisez des notifications push pour informer les utilisateurs des nouvelles demandes de services ou des messages.
+
+### Évaluation et commentaires :
+
+Permettez aux utilisateurs de noter et de commenter les services qu'ils ont utilisés.
 
 ## Licence
 

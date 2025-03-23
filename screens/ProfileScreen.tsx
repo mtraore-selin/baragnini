@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import {
   Avatar,
   Card,
@@ -10,10 +10,13 @@ import {
   useTheme,
 } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useDispatch } from "react-redux";
+import { logout } from "../features/auth/authSlice";
 
 export default function ProfileScreen() {
   const theme = useTheme();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   // Données du profil (à remplacer par des données dynamiques)
   const user = {
@@ -24,8 +27,21 @@ export default function ProfileScreen() {
   };
 
   const handleLogout = () => {
-    console.log("Déconnexion réussie");
-    navigation.navigate("Login"); // Rediriger vers l'écran de connexion
+    Alert.alert(
+      "Déconnexion",
+      "Êtes-vous sûr de vouloir vous déconnecter ?",
+      [
+        { text: "Annuler", style: "cancel" },
+        {
+          text: "Se déconnecter",
+          onPress: () => {
+            dispatch(logout());
+            navigation.navigate("Login");
+          },
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   return (

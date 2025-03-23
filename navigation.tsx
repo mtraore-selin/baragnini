@@ -9,32 +9,69 @@ import { RootStackParamList } from "./types/navigationTypes";
 import HomeScreen from "./screens/ HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { getTabIcon } from "./utils/tabIcons";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
 // Couleurs personnalisées
-const activeColor = "#6200ee"; // Couleur active (votre couleur d'accent)
-const inactiveColor = "#666"; // Couleur inactive (gris)
+const activeColor = "#6200ee";
+const inactiveColor = "#666";
+const disabledColor = "#ccc";
 
 export default function AppNavigation() {
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             const iconName = getTabIcon(route, focused);
-            // Utilisez la couleur passée par screenOptions
-            return <Icon name={iconName} size={size} color={color} />;
+            const iconColor =
+              route.name === "Login" || isAuthenticated ? color : disabledColor;
+            return <Icon name={iconName} size={size} color={iconColor} />;
           },
-          tabBarActiveTintColor: activeColor, // Couleur active pour les icônes et le texte
-          tabBarInactiveTintColor: inactiveColor, // Couleur inactive pour les icônes et le texte
+
+          tabBarActiveTintColor: activeColor,
+          tabBarInactiveTintColor: inactiveColor,
         })}
       >
+        {/* Écran de connexion (toujours accessible) */}
         <Tab.Screen name="Login" component={LoginScreen} />
-        <Tab.Screen name="Accueil" component={HomeScreen} />
-        <Tab.Screen name="Services" component={ServicesScreen} />
-        <Tab.Screen name="Ajouter un service" component={AddServiceScreen} />
-        <Tab.Screen name="Profil" component={ProfileScreen} />
+
+        {/* Écrans protégés */}
+        <Tab.Screen name="Accueil">
+          {() => (
+            <ProtectedRoute>
+              <HomeScreen />
+            </ProtectedRoute>
+          )}
+        </Tab.Screen>
+        <Tab.Screen name="Services">
+          {() => (
+            <ProtectedRoute>
+              <ServicesScreen />
+            </ProtectedRoute>
+          )}
+        </Tab.Screen>
+        <Tab.Screen name="Ajouter un service">
+          {() => (
+            <ProtectedRoute>
+              <AddServiceScreen />
+            </ProtectedRoute>
+          )}
+        </Tab.Screen>
+        <Tab.Screen name="Profil">
+          {() => (
+            <ProtectedRoute>
+              <ProfileScreen />
+            </ProtectedRoute>
+          )}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );

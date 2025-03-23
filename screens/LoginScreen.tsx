@@ -1,17 +1,23 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, TextInput, Title, useTheme } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useDispatch } from "react-redux";
+import { login } from "../features/auth/authSlice";
 
 const LoginScreen: React.FC = () => {
   const theme = useTheme();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Ajoutez ici la logique de connexion
+    console.log(email, password);
+    // Simuler une connexion réussie
+    dispatch(login({ name: "Mohamed TRAORE", email: "mtra0102@gmail.com" }));
+    navigation.navigate("Accueil"); // Rediriger vers l'écran d'accueil
   };
 
   return (
